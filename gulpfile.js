@@ -13,18 +13,20 @@ global.app = {
 }
 //импорт задач
 import {copy} from "./gulp/tasks/copy.js";
-import {reset} from "./gulp/tasks/reset.js";
+import {del} from "./gulp/tasks/reset.js";
 import {html} from "./gulp/tasks/html.js";
+import {server} from "./gulp/tasks/server.js";
 
 //наблюдатель за изменениями в файлах
 function watcher(){
     gulp.watch(path.watch.files, copy);
-    gulp.watch(path.watch.html, copy);
+    gulp.watch(path.watch.html, html);
 }
 
 const mainTasks = gulp.parallel(copy, html);//параллельное выполнение нескольких задач
 
 //построение сценариев выполнения задач (продакшн и разработка)
-const dev = gulp.series(reset, mainTasks, watcher);//метод выполняет задачи последовательно
+const dev = gulp.series(del, mainTasks, gulp.parallel(watcher, server));//метод выполняет задачи последовательно
+// const dev = gulp.series(del, mainTasks, watcher);
 // выполнение сценария по умолчанию
 gulp.task('default', dev);
