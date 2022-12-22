@@ -11,8 +11,10 @@
 <body>
     <header></header>
     <main>Привет!</main>
-    <img src="images/593fd655eec57.jpg" alt="">
-    <span>asdasdasdas</span>
+    <picture><source srcset="images/593fd655eec57.webp" type="image/webp"><img src="images/593fd655eec57.jpg" width="100px" height="100px" alt=""></picture>
+    <picture><source srcset="images/17478da42271207e1d86.webp" type="image/webp"><img src="images/17478da42271207e1d86.jpg" width="100px" height="100px" alt=""></picture>
+    <picture><source srcset="images/c78a1ff26086681a2712a0477504b785.webp" type="image/webp"><img src="images/c78a1ff26086681a2712a0477504b785.jpg" width="100px" height="100px" alt=""></picture>
+    <span>Привет, этот мир!</span>
     <footer></footer>
     <script src="js/app.min.js"></script>
 </body>
@@ -20,7 +22,7 @@
 
 <!-- для получения картинки из вложенной папки нужно добавить в шаблон 
     header (пример) следующую строку 
-    <img src="../images/photo_2022-12-02_13-05-14.jpg" alt="">
+    <picture><source srcset="../images/photo_2022-12-02_13-05-14.webp" type="image/webp"><img src="../images/photo_2022-12-02_13-05-14.jpg" alt=""></picture>
     но могут возникнуть конфликты с путями
     нужно настроить vs code
     1. скачать Path Autocomplete

@@ -1,14 +1,24 @@
 import dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 import rename from 'gulp-rename';
-import cleanCss from 'gulp-clean-css'; // сжатие CSS файла
-import webpcss from 'gulp-webpcss';//вывод WEBP изображения
+import cleanCss from 'gulp-clean-css';  // сжатие CSS файла
 import autoprefixer from 'gulp-autoprefixer';// добавление вендорных префиксов 
 import groupCssMediaQueries from 'gulp-group-css-media-queries';// группировка медиа запросов
 const sass = gulpSass(dartSass);
 
 export const scss = () => {
     return app.gulp.src(app.path.src.scss)
+    .pipe(
+        app.plugins.if(
+            app.isBuild,
+            app.plugins.plumber(
+                app.plugins.notify.onError({
+                    title: "SCSS",
+                    message: "Error: <%= error.message %>"
+                })
+            )
+        )
+    )
     .pipe(app.plugins.replace(/@img\//g, '../images/'))
     .pipe(sass({
         outputStyle: 'expanded'
@@ -27,17 +37,7 @@ export const scss = () => {
                 overrideBrowserslist: ["last 3 versions"],// количество версий бразуера от новой
                 cascade:true
             })
-        )
-    )
-    .pipe(
-        app.plugins.if(
-            app.isBuild,
-            webpcss({
-                webpClass: ".webp", // если бразуер поддерживает webp, то по этому классу будет выводится изображение
-                noWebpClass: ".no-webp"
-            })
-        )
-    )
+        ))
     // .pipe(app.gulp.dest(app.path.build.css)) не сжатый дубль файла стилей
     .pipe(
         app.plugins.if(

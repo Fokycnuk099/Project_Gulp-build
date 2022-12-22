@@ -22,6 +22,7 @@ import {scss} from "./gulp/tasks/scss.js";
 import {js} from "./gulp/tasks/js.js";
 import {images} from "./gulp/tasks/images.js";
 import {zip} from "./gulp/tasks/zip.js";
+import {otfToTtf, ttfToWoff, fontStyle} from "./gulp/tasks/fonts.js";
 //наблюдатель за изменениями в файлах
 function watcher(){
     gulp.watch(path.watch.files, copy);
@@ -31,7 +32,10 @@ function watcher(){
     gulp.watch(path.watch.images, images);
 }
 
-const mainTasks = gulp.parallel(copy, html, scss, js, images);//параллельное выполнение нескольких задач
+//обработка шрифтов
+const fonts = gulp.series(otfToTtf, ttfToWoff, fontStyle);
+//основные задачи
+const mainTasks = gulp.series(fonts, gulp.parallel(copy, html, scss, js, images));//параллельное выполнение нескольких задач
 
 //построение сценариев выполнения задач (продакшн и разработка)
 const dev = gulp.series(del, mainTasks, gulp.parallel(watcher, server));//метод выполняет задачи последовательно

@@ -3,7 +3,7 @@ export const server = (done) => {
         server: {
             baseDir: `${app.path.build.html}` //базовая папка откуда идет запуск файлов
         },
-        notify: false,
+        notify: false,//сообщения в браузере
         port: 3000,
     });
 }
