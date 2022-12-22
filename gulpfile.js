@@ -21,6 +21,7 @@ import {server} from "./gulp/tasks/server.js";
 import {scss} from "./gulp/tasks/scss.js";
 import {js} from "./gulp/tasks/js.js";
 import {images} from "./gulp/tasks/images.js";
+import {zip} from "./gulp/tasks/zip.js";
 //наблюдатель за изменениями в файлах
 function watcher(){
     gulp.watch(path.watch.files, copy);
@@ -35,8 +36,10 @@ const mainTasks = gulp.parallel(copy, html, scss, js, images);//параллел
 //построение сценариев выполнения задач (продакшн и разработка)
 const dev = gulp.series(del, mainTasks, gulp.parallel(watcher, server));//метод выполняет задачи последовательно
 const build = gulp.series(del, mainTasks);
+const deployZIP = gulp.series(del,mainTasks,zip);
 //экспорт сценариев
 export {dev}
 export {build}
+export {deployZIP}
 // выполнение сценария по умолчанию
 gulp.task('default', dev);

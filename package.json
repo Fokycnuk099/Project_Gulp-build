@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "gulp",
     "build": "gulp build --build",
+    "zip": "gulp deployZIP --build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Vladislav_Fokycnuk099",
@@ -27,6 +28,7 @@
     "gulp-sass": "^5.1.0",
     "gulp-webp": "^4.0.1",
     "gulp-webpcss": "^1.1.1",
+    "gulp-zip": "^5.1.0",
     "sass": "^1.57.0",
     "webp-converter": "^2.2.3",
     "webpack": "^5.75.0",
