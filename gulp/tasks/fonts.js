@@ -81,7 +81,7 @@ export const fontStyle = () => {
                     }
                     }
                 }
-            });
+            }); // для обновления файла с шрифтами, его нужно удалить
     return app.gulp.src(`${app.path.srcFolder}`);
     function cb() { }
 }

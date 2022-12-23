@@ -23,6 +23,7 @@ import {js} from "./gulp/tasks/js.js";
 import {images} from "./gulp/tasks/images.js";
 import {zip} from "./gulp/tasks/zip.js";
 import {otfToTtf, ttfToWoff, fontStyle} from "./gulp/tasks/fonts.js";
+import {svgSprive} from "./gulp/tasks/svgSprive.js";
 //наблюдатель за изменениями в файлах
 function watcher(){
     gulp.watch(path.watch.files, copy);
@@ -45,5 +46,6 @@ const deployZIP = gulp.series(del,mainTasks,zip);
 export {dev}
 export {build}
 export {deployZIP}
+export {svgSprive}
 // выполнение сценария по умолчанию
 gulp.task('default', dev);

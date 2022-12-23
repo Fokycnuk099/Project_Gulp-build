@@ -21,6 +21,7 @@ export const path = {
         images: `${srcFolder}/images/**/*.{jpg,jpeg,png,gif,webp}`,
         scss: `${srcFolder}/scss/style.scss`,
         html: `${srcFolder}/*.html`, //содержимое папки не копируется в результат, отслеживаем файлы в корне (/pug)
+        svgicons: `${srcFolder}/svgicons/*.svg`,
         files: `${srcFolder}/files/**/*.*` //srcFolder папка с исходниками, files из нее будут переносится файлы, ** проверка любых вложеных файлов в папке files, *.* любые файлы (название.расширение)
     }, 
     watch: {
@@ -33,6 +34,5 @@ export const path = {
     clean: buildFolder, 
     buildFolder: buildFolder, //папка с результатом
     srcFolder: srcFolder, //папка с исходниками
-    rootFolder: rootFolder, //название текущей папки проекта
-    ftp: `` //указание папки на удаленном сервере
+    rootFolder: rootFolder //название текущей папки проекта
 }
